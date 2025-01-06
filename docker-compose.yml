@@ -41,6 +41,7 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - app_public:/var/www/html/public:ro
+      - app_storage:/var/www/html/storage:ro
     ports:
       - '80:80'
       - '443:443'
