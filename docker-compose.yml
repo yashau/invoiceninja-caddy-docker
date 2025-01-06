@@ -31,14 +31,14 @@ services:
 
   caddy:
     image: caddy:latest
-    restart: 'always'
+    restart: unless-stopped
     depends_on:
       - app
       - phpmyadmin
     env_file:
       - ./.env
     volumes:
-      - './caddy/Caddyfile:/etc/caddy/Caddyfile:ro'
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - app_public:/var/www/html/public:ro
     ports:
@@ -85,11 +85,11 @@ services:
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: 'always'
+    restart: unless-stopped
     env_file:
       - ./.env
     volumes:
-      - './pma/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php:ro'
+      - ./pma/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php:ro
     networks:
       - app-network
     environment:
