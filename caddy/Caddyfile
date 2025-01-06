@@ -1,0 +1,22 @@
+{
+    email {$CADDY_EMAIL}
+}
+{$APP_URL} {
+    root * /var/www/html/public
+    php_fastcgi app:9000
+    encode zstd gzip
+    file_server browse
+
+    route /storage/* {
+        root * /var/www/html/storage/app/public
+        file_server
+    }
+
+}
+
+{$PMA_URL} {
+    reverse_proxy phpmyadmin:80
+    request_body {
+                max_size 100MB
+        }
+}
