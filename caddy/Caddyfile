@@ -6,12 +6,6 @@
     php_fastcgi app:9000
     encode zstd gzip
     file_server browse
-
-    route /storage/* {
-        root * /var/www/html/storage/app/public
-        file_server
-    }
-
 }
 
 {$PMA_URL} {
