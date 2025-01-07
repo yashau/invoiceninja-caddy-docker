@@ -1,4 +1,1 @@
 .env
-data/db/*
-data/public/*
-data/storage/*
